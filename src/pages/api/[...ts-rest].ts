@@ -1,24 +1,17 @@
-import { api } from '@/contract'
+// A single file implementing all the routes for the API, delegating the implementation
+// to a specialized service (use case)
 import { createNextRoute, createNextRouter } from '@ts-rest/next'
 
-const postsRouter = createNextRoute(api.posts, {
-  getPosts: async _args => {
-    return {
-      status: 200,
-      body: [
-        {
-          id: '1',
-          title: 'Hello World',
-          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-        },
-        {
-          id: '2',
-          title: 'Goodbye World',
-          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-        }
-      ]
+import { api } from '@/contract'
+import { GetPosts } from '@/services/posts/get-posts'
+
+const router = createNextRoute(api, {
+  posts: {
+    getPosts: async () => {
+      const body = await GetPosts.instance.execute()
+      return { status: 200, body }
     }
   }
 })
 
-export default createNextRouter(api, { posts: postsRouter })
+export default createNextRouter(api, router)

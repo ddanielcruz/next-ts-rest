@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
-import { client } from '@/client'
+import { client } from '@/libs/client'
 
 export default function Home() {
-  const { isLoading, data } = client.posts.getPosts.useQuery(['posts'])
-  console.log({ isLoading, data })
+  // Request data from the server using the `getPosts` query, as we'd do in a regular React app
+  const { data } = client.posts.getPosts.useQuery(['posts'])
 
   return (
     <main className="h-screen w-full bg-slate-800">
