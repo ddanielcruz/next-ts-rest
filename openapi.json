@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.2",
+  "paths": {
+    "/posts": {
+      "get": {
+        "summary": "Get all posts",
+        "tags": [
+          "posts"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "body": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "body"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Posts API",
+    "version": "1.0.0"
+  }
+}
